@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+             <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+
+    
+        <style>
+            .textsize{
+                width:10% !important;
+            }
+            .textsize2{
+                width: 20% !important;
+            }
+        </style>
+    </head>
+<body onload="init()">
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    
+    <script>
+    function AddPlayer(){
+        var playerName = document.getElementById("playerNameText").value;
+        //var playerName = "second";
+        var playerNameArray =JSON.parse(sessionStorage.getItem("playerNameArray"));
+        playerNameArray[playerNameArray.length] = playerName;
+        //playerNameArray.push(playerName);
+        //console.log(playerNameArray[1]);
+        sessionStorage.setItem("playerNameArray",JSON.stringify(playerNameArray));
+        var i = 0;
+        
+        var thnew = document.createElement('th');
+        var mainTable = document.getElementById("mainTable");
+        var textNode = document.createTextNode(playerName);
+        thnew.appendChild(textNode);
+        thnew.setAttribute("id",playerName+"th");
+        
+        var checkBoxP = document.createElement('p');
+        var checkBoxL = document.createElement('label');
+        var checkBoxInput = document.createElement('input');
+        checkBoxInput.setAttribute("type","checkbox");
+        checkBoxInput.setAttribute("onclick","removePlayer()");
+        checkBoxInput.setAttribute("id",playerName+"checkBox");
+        var checkBoxSpan = document.createElement('span');
+        var checkBoxText = document.createTextNode('');
+        
+        checkBoxSpan.appendChild(checkBoxText);
+        checkBoxL.appendChild(checkBoxInput);
+        checkBoxL.appendChild(checkBoxSpan);
+        checkBoxP.appendChild(checkBoxL);
+        
+        thnew.appendChild(checkBoxP);
+        
+        if(playerNameArray.length == 1){
+            var trnew = document.createElement('tr');
+            var thnew2 = document.createElement('th');
+            var playerHeading = document.createTextNode("Player Name");
+            thnew2.appendChild(playerHeading);
+            trnew.appendChild(thnew2);
+            mainTable.appendChild(trnew);
+        }
+        mainTable.rows[0].appendChild(thnew);
+        textBox();
+        fillDropDown();    
+    }
+        function init(){
+            var playerNameArray = [];
+            sessionStorage.setItem("playerNameArray",JSON.stringify(playerNameArray));
+            var round = 0;
+            sessionStorage.setItem("round",round);
+            sessionStorage.setItem("defaultValueInitial","0");
+            
+        }
+        function textBox(){
+            var playerNameArray =JSON.parse(sessionStorage.getItem("playerNameArray"));
+            if(playerNameArray.length == 1){
+                var trnew = document.createElement('tr');
+                var tdnew = document.createElement('td');
+                var textnew = document.createElement('input');
+                
+                var tdRound = document.createElement('td');
+                var round = Number(sessionStorage.getItem("round")+1);
+                
+                var roundText = document.createTextNode("Round "+round);
+                //roundText.setAttribute("id","roundText");
+                tdRound.appendChild(roundText);
+                tdRound.setAttribute("id","roundText");
+                trnew.appendChild(tdRound);
+                
+                tdnew.setAttribute("id",playerNameArray[0]+"ScoreTD");
+                textnew.setAttribute("type","text");
+                var defVal = sessionStorage.getItem("defaultValueInitial");
+                textnew.setAttribute("value",defVal);
+                textnew.setAttribute("id",playerNameArray[0]+"Score");
+                tdnew.appendChild(textnew);
+                trnew.appendChild(tdnew);
+                var trscore = document.createElement('tr');
+                var tdscore = document.createElement('td');
+                tdscore.setAttribute("id",playerNameArray[0]+"FinalTD")
+                var pscore = document.createElement('p');
+                var textNode = document.createTextNode('0');
+                
+                var tdRound2 = document.createElement('td');
+                var round2 = Number(sessionStorage.getItem("round")+1);
+                
+                var roundText = document.createTextNode("Total");
+                
+                tdRound2.appendChild(roundText);
+                trscore.appendChild(tdRound2);
+                
+                pscore.setAttribute("id",playerNameArray[0]+"Final");
+                pscore.appendChild(textNode);
+                tdscore.appendChild(pscore);
+                trscore.appendChild(tdscore);
+                
+                document.getElementById("mainTable").appendChild(trnew);
+                document.getElementById("mainTable").appendChild(trscore);
+            }
+            else{
+                var tdnew = document.createElement('td');
+                tdnew.setAttribute("id",playerNameArray[playerNameArray.length - 1]+"ScoreTD")
+                var textnew = document.createElement('input');
+                textnew.setAttribute("type","text");
+                var defVal = sessionStorage.getItem("defaultValueInitial");
+                textnew.setAttribute("value",defVal);
+                textnew.setAttribute("id",playerNameArray[playerNameArray.length - 1]+"Score");
+                tdnew.appendChild(textnew);
+                document.getElementById("mainTable").rows[document.getElementById("mainTable").getElementsByTagName('tr').length - 2].appendChild(tdnew);
+                var tdscore = document.createElement('td');
+                tdscore.setAttribute("id",playerNameArray[playerNameArray.length - 1]+"FinalTD")
+                var pscore = document.createElement('p');
+                var textNode = document.createTextNode('0');
+                pscore.setAttribute("id",playerNameArray[playerNameArray.length - 1]+"Final");
+                pscore.appendChild(textNode);
+                tdscore.appendChild(pscore);
+               // trscore.appendChild(tdscore);
+                document.getElementById("mainTable").rows[document.getElementById("mainTable").getElementsByTagName('tr').length - 1].appendChild(tdscore);
+                
+            }
+            /*
+            var trnew = document.createElement('tr');
+            var i = 0;
+            for (i = 0; i < playerNameArray.length ; i++){
+                var tdnew = document.createElement('td');
+                var textnew = document.createElement('input');
+                textnew.setAttribute("type","text");
+                textnew.setAttribute("id",playerNameArray[i]+"Score");
+                tdnew.appendChild(textnew);
+                trnew.appendChild(tdnew);
+            }
+            document.getElementById("mainTable").appendChild(trnew);
+    */
+    }
+    
+        function SubmitScore(){
+            var round = Number(sessionStorage.getItem("round"));
+            round = round + 1;
+            var playerNameArray =JSON.parse(sessionStorage.getItem("playerNameArray"));
+            var i = 0;
+            var MainTable = document.getElementById("mainTable").getElementsByTagName('tr')
+            if(MainTable.length == 3){
+                var trnew = document.createElement('tr');
+                var tdRound = document.createElement('td');
+                
+                var roundText = document.createTextNode("Round "+round);
+                tdRound.appendChild(roundText);
+                trnew.appendChild(tdRound);
+                for (i = 0; i < playerNameArray.length ; i++){
+                    
+                var tdnew = document.createElement('td');
+                var score = document.createTextNode(document.getElementById(playerNameArray[i]+"Score").value)
+                
+                tdnew.appendChild(score);
+                tdnew.setAttribute("id",playerNameArray[i]+round);
+                    
+                
+                    
+                trnew.appendChild(tdnew);
+                
+                }
+                document.getElementById("mainTable").insertBefore(trnew,MainTable.item(MainTable.length - 2));
+                document.getElementById("roundText").innerHTML = "Round "+(round+1);
+                //document.getElementById("mainTable").appendChild(trnew);
+            }
+            else{
+               // var trnew = MainTable.item[MainTable.length - 1] 
+                var trnew = document.createElement('tr');
+                 var tdRound = document.createElement('td');
+                
+                var roundText = document.createTextNode("Round "+round);
+                tdRound.appendChild(roundText);
+                    
+                trnew.appendChild(tdRound);
+                for (i = 0; i < playerNameArray.length ; i++){
+                    
+                var tdnew = document.createElement('td');
+                var score = document.createTextNode(document.getElementById(playerNameArray[i]+"Score").value)
+                tdnew.appendChild(score);
+                tdnew.setAttribute("id",playerNameArray[i]+round); 
+               
+                trnew.appendChild(tdnew);
+                
+                }
+                document.getElementById("mainTable").insertBefore(trnew,MainTable.item(MainTable.length - 2));
+                document.getElementById("roundText").innerHTML = "Round "+(round+1);
+            }
+            sessionStorage.setItem("round",round);
+            FinalScore();
+        }
+        
+        function FinalScore(){
+            var round = Number(sessionStorage.getItem("round"));
+            var playerNameArray =JSON.parse(sessionStorage.getItem("playerNameArray"));
+            var i = 0;
+            var j = 0;
+            for(i = 0; i < playerNameArray.length ; i++){
+                var finalScore = 0;
+                for(j = 1; j <= round; j++){
+                    if(document.getElementById(playerNameArray[i]+j)){
+                        finalScore = finalScore + Number(document.getElementById(playerNameArray[i]+j).innerHTML);
+                
+                    }
+                    }
+                document.getElementById(playerNameArray[i]+"Final").innerHTML = finalScore;
+            }
+        }
+        
+        function setDefaultValue(){
+            var defaultValueInitial = document.getElementById("defaultValueInitial").value;
+            sessionStorage.setItem("defaultValueInitial",defaultValueInitial);
+            alert("New Default Value set!");
+        }
+        function fillDropDown(){
+            var playerNameArray =JSON.parse(sessionStorage.getItem("playerNameArray"));
+            var fillDropDown = document.getElementById("fillDropDown");
+            var i = 0;
+            for(i = 0; i < playerNameArray.length ; i++){
+                var option = document.createElement('option');
+                option.setAttribute("value",i)
+                var text = document.createTextNode(playerNameArray[i]);
+                option.appendChild(text);
+                fillDropDown.appendChild(option);
+            }
+        }
+            
+        function removePlayer(){
+            document.getElementById("deletePlayer").style.display="block";
+        }
+        
+        function deletePlayer(){
+            var playerNameArray =JSON.parse(sessionStorage.getItem("playerNameArray"));
+            
+            var i = 0; 
+            for(i = 0; i < playerNameArray.length ; i++ ){
+                if(document.getElementById(playerNameArray[i]+"checkBox").checked == true){
+            document.getElementById(playerNameArray[i]+"th").parentNode.removeChild(document.getElementById(playerNameArray[i]+"th"));
+                   
+                
+                var j = 0;
+                    for(j = 0; j < Number(sessionStorage.getItem("round")); j++){
+                        if(document.getElementById(playerNameArray[i]+Number(sessionStorage.getItem("round")))){
+                            document.getElementById(playerNameArray[i]+Number(sessionStorage.getItem("round"))).parentNode.removeChild(document.getElementById(playerNameArray[i]+Number(sessionStorage.getItem("round"))));
+                    }
+                }   
+                    if(document.getElementById(playerNameArray[i]+"Final")){
+        document.getElementById(playerNameArray[i]+"Final").parentNode.removeChild(document.getElementById(playerNameArray[i]+"Final"));
+       
+            }
+                    document.getElementById(playerNameArray[i]+"Score").parentNode.removeChild(document.getElementById(playerNameArray[i]+"Score"));
+                    
+                    document.getElementById(playerNameArray[i]+"ScoreTD").parentNode.removeChild(document.getElementById(playerNameArray[i]+"ScoreTD"));
+                    document.getElementById(playerNameArray[i]+"FinalTD").parentNode.removeChild(document.getElementById(playerNameArray[i]+"FinalTD"));
+                    
+                    playerNameArray.splice(i,1);
+                    
+                }
+            }
+            sessionStorage.setItem("playerNameArray",playerNameArray);
+        }
+    </script>
+    <div class="container">
+    
+<title>BQ ScoreCard</title>
+<h4>Welcome to PaperLess World!!!</h4>
+
+ <input type="number" id="defaultValueInitial" class="textsize" />
+    <button onclick="setDefaultValue()" class="waves-effect waves-light btn">Set default Value</button><br>
+
+    <input type="text" id="playerNameText" value="Mickey" class="textsize2">
+    <button id="addPlayer" onclick="AddPlayer()" class="waves-effect waves-light btn">Add Player</button>
+        <button id="deletePlayer" onclick="deletePlayer()" class="waves-effect waves-light btn" style="display: none" >Delete Player</button>
+        
+        <p>
+      <label>
+        <input type="checkbox" onclick="removePlayer()" />
+        <span>Red</span>
+      </label>
+    </p>
+        
+    <table id="mainTable" class="responsive-table">
+     
+    </table>
+        <button id="submitScore" onclick="SubmitScore()" class="waves-effect waves-light btn">Submit Score</button>
+    
+    </div>
+</body>
+</html>
