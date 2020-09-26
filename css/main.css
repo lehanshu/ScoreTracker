@@ -1,0 +1,42 @@
+.mainContainer{
+    background-color: #e0e0e0 ;
+    padding: 2%;
+    height: 100%
+}
+
+.sideNavigation{
+    padding: 2px;
+    background-color: #b0bec5    ;
+    height: 100%;
+    position:relative;
+}
+
+.sideContainer{
+    padding: 5px !important;
+    background-color: white;
+    height: 1200px;
+}
+
+.sideNavLink{
+    background-color: #ffccbc !important ;
+}
+
+.tabHeader{
+    font-size: 30px;
+    text-align: center;
+    background-color: #424242 ;
+    color: white;
+    font-weight: 400;
+    width: 100%;
+    margin: inherit;
+}
+
+.companyPosition{
+    font-weight: 450;
+}
+
+.company{
+    font-weight: 500;
+    margin-top: -15px !important;
+    color: #0091ea ; 
+}
