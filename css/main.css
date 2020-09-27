@@ -1,14 +1,14 @@
 .mainContainer{
-    background-color: #e0e0e0 ;
+    background-color: white ;
     padding: 2%;
-    height: 100%
 }
 
 .sideNavigation{
     padding: 2px;
-    background-color: #b0bec5    ;
+    background-color:white    ;
     height: 100%;
     position:relative;
+    margin-top: 10px;
 }
 
 .sideContainer{
@@ -22,21 +22,39 @@
 }
 
 .tabHeader{
-    font-size: 30px;
     text-align: center;
-    background-color: #424242 ;
     color: white;
     font-weight: 400;
     width: 100%;
     margin: inherit;
+    background-color: rgb(2 143 197) !important;
 }
 
 .companyPosition{
-    font-weight: 450;
+    font-weight: 700;
 }
 
 .company{
     font-weight: 500;
     margin-top: -15px !important;
     color: #0091ea ; 
+}
+
+.companyText{
+     font-weight: 300;
+     margin-top: -15px !important;   
+}
+
+.ulText{
+    margin-top: -10px;
+    font-weight: 300;
+}
+
+.navLink{
+    color:  rgb(2 143 197); 
+    font-weight: 500;
+}
+
+.divCarousel{
+    margin-top: 10px; 
 }

@@ -8,13 +8,19 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
+      <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+      <script src="./js/materialize.js"></script>
+      <script src="./js/materialize.min.js"></script>
              <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         
         <!-- Load React. -->
   <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
   <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.carousel');
+    var instances = M.Carousel.init(elems, 200);
+  });
 
     function removeCssClass(id,className){
         document.getElementById(id).classList.remove(className);
@@ -31,19 +37,14 @@
         AddCssClass(id,className);
     }
 
+    function topScroll(){
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
   </script>
   
 
-
-    
-        <style>
-            .textsize{
-                width:10% !important;
-            }
-            .textsize2{
-                width: 20% !important;
-            }
-        </style>
     </head>
 <body>
 
@@ -51,9 +52,9 @@
 
     <div class="mainContainer">
         <title>Lehanshu Khatri</title>
-        <nav>
+        <nav class="white">
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="./BQ.html">ScoreCard App<a/></li>
+                <li><a class="navLink" href="./BQ.html">Score Card App<a/></li>
                 <li></li>
                 <li></li>
             </ul>
@@ -61,15 +62,31 @@
 
             <!-- Navbar goes here -->
 
+
     <!-- Page Layout here -->
     <div class="row">
 
+
+
+<div class="col s12 divCarousel">
+     <div class="carousel carousel-slider">
+    <a class="carousel-item" href="#one!"><img src="./photos/sand_dunes1.JPG"></a>
+    <a class="carousel-item" href="#two!"><img src="./photos/bridge.jpg"></a>
+    <a class="carousel-item" href="#three!"><img src="./photos/snow1.jpg"></a>
+  </div>
+</div>
+
+
+<br />
+
+
       <div class="col s3 sideNavigation">
+
+          <div class="LI-profile-badge"  data-version="v1" data-size="large" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="lehanshu-khatri-16540b118"><a class="LI-simple-link" href='https://in.linkedin.com/in/lehanshu-khatri-16540b118?trk=profile-badge'>Lehanshu Khatri</a></div>
           <div class="collection">
         <a id="Link1" href="#mainContainer" class="collection-item" onclick="sideNaveActiveLink('Link1','active')" >Work Expirence</a>
-         <a id="Link2" href="./BQ.html" class="collection-item" onclick="sideNaveActiveLink('Link2','active')">BQ ScoreCard</a>
-        <a id="Link3" href="#secondContainer" class="collection-item" onclick="sideNaveActiveLink('Link3','active')">Alvin</a>
-        <a id="Link4" href="#!" class="collection-item" onclick="sideNaveActiveLink('Link4','active')">Alvin</a>
+         <a id="Link2" href="#divAchievementAndHonours" class="collection-item" onclick="sideNaveActiveLink('Link2','active')">Achievement and Honors</a>
+        <a id="Link3" href="#divEducation" class="collection-item" onclick="sideNaveActiveLink('Link3','active')">Education</a>
       </div>
        
         <!-- Grey navigation panel -->
@@ -77,32 +94,105 @@
       <div class="col s9 sideContainer">
           <div class="divider"></div>
   <div class="section">
-    <h5>Work Experience</h5>
+      <div class="card-panel tabHeader">Work Experience</div>
     <p class="companyPosition">Full Stack Software Developer</p>
     <p class="company">FinIQ Consulting India Pvt. Ltd.</p>
-  </div>
+    <p class="companyText">FinIQ is a Singapore-based financial markets technology provider, caters to Order Management, Trade Execution, Compliance
+and Post Trade Life Cycle for Derivatives, Structured Products, Swaps and Bonds to nearly 15,000 bankers across 18 countries</p>
+<ul class="ulText">
+  <li><input  type="radio" checked /><span>Lead Software Engineer, Developer and Release Manager for FinIQ SP Connect Cloud Platform. Implemented scalable
+solution to manage configurable Email based communication between 18 counterparties for 104 Structured Product payoff.</span></li>
+  <li><input  type="radio" checked /><span>Lead Software Developer for Order Management System based on FIX communication for various Structured Products.</span></li>
+  <li><input  type="radio" checked /><span>Software Developer for FinIQ ELI Connect Platform. Implemented product flow for Retail Equity Linked Investments.
+</span></li>
+<li><input  type="radio" checked /><span>Web API development for Premium Calculations and Delta Calculation (870M) using Black Scholes and Monte Carlo
+Simulation.
+</span></li>
+</ul>
+  
+    <p class="companyPosition">Summer Intern</p>
+    <p class="company">Tata Research Development and Design Center, Pune</p>
+    <ul class="ulText">
+  <li><input  type="radio" checked /><span>Using Ruby on Rails, we developed a comprehensive module to help Business Analysts to gather Project Requirements
+efficiently</span></li>
+</ul>
+
+   <p class="companyPosition">Projects</p>
+    <ul class="ulText">
+  <li><input  type="radio" checked /><span><b>BTech Project:</b>Autonomous Self driving Robotic Car on Raspberry Pi using CNN, OpenCV, TensorFlow, Keras, Python</span></li>
+  <li><input  type="radio" checked /><span><b>Personal:</b> Developed a Web Application using Reactjs and Spring Boot to manage subscriptions for my café.
+</span></li>
+</ul>
+</div> 
+
   <div class="divider"></div>
   <div class="section">
-    <h5>Section 2</h5>
-    <p>Stuff</p>
-  </div>
-  <div class="divider"></div>
-  <div class="section">
-    <h5>Section 3</h5>
-    <p>Stuff</p>
+      <div id="divAchievementAndHonours" class="card-panel tabHeader">Achievement and Honors</div>
+   <p class="companyPosition">COEP WebTeam Head</p>
+    <ul class="ulText">
+  <li><input  type="radio" checked /><span>Introduced a revamped website for COEP with user friendly UI, additional features and improved Security.</span></li>
+  <li><input  type="radio" checked /><span>Developed Online Scholarship Applications process for COEP, saves around 3200 student hours every year.
+</span></li>
+</ul>
+
+<p class="companyPosition">Corporate Outreach Head</p>
+    <ul class="ulText">
+  <li><input  type="radio"  checked /><span>Core team Member of MindSpark’16 - Annual Technical Festival of COEP. Responsible for
+introducing MindSpark to vast network of COEP Alumni and collecting sponsorships.</span></li>
+</ul>
+
+
+<!--<p class="companyPosition">Overall Student Coordinator for Alumni Association of COEP, Overall Head for Annual departmental Sports</p>
+   --> 
+<p class="companyPosition">Sports</p>
+    <ul class="ulText">
+  <li><input  type="radio" checked /><span> Baseball, Lawn Tennis, Volleyball, Cricket, Badminton, Table Tennis, (E-Sport) CS GO.</span></li>
+</ul>
+
+<p class="companyPosition">Other Activities and Interests</p>
+    <ul class="ulText">
+  <li><input  type="radio" checked /><span> Travel Enthusiast and travel video making, Blogging on Human Psychology and Cultural
+Myth busting, deep interest on World history, World Cultures, Astronomy and Physics.
+</span></li>
+</ul>
   </div>
           
+<div class="divider"></div>
+  <div class="section">
+<div id="divEducation" class="card-panel tabHeader">Education</div>
+   <p class="companyPosition">College of Engineering, Pune (COEP)</p>
+    <ul class="ulText">
+  <li><input  type="radio" checked /><span>Bachelor of Technology in Information Technology with an aggregate CGPA of 7.91
+final year aggregate CGPA of 9.07</span></li>
+</span></li>
+</ul>
 
-        <!-- Teal page content  -->
+<p class="companyPosition">A. S. C. Junior College, Koradi (HSC)</p>
+    <ul class="ulText">
+  <li><input  type="radio" checked /><span>Higher Secondary Certificate in Electronics - 81.67%</span></li>
+</span></li>
+</ul>
 
-         <div id="secondContainer" style="height: 1200px">
-    </div>
+<p class="companyPosition"> I. E. M. S, Kalmeshwar (SSC)</p>
+    <ul class="ulText">
+  <li><input  type="radio" checked /><span>Secondary School Certificate - 85.27%</span></li>
+</span></li>
+</ul>
+
+  </div>
+
       </div>
       </div>  
    
 
     </div>
-       
+     
+     
+       <div class="fixed-action-btn">
+            <a class="btn-floating btn-large pulse teal" onclick="topScroll()">
+                <i class="large material-icons">arrow_upward</i>
+            </a>
+       </div>
         
     
 
