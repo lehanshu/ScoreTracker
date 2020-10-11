@@ -1,0 +1,13 @@
+.mainContainer{
+    background-color: white ;
+    padding: 2%;
+}
+
+.navLink{
+    color:  rgb(2 143 197); 
+    font-weight: 500;
+}
+
+.buttonClass{
+    color: red !important;
+}
